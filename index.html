@@ -13,16 +13,16 @@
       line-height: 1.8; color: #333; margin: 0; padding: 0; background-color: #fcfcfc;
     }
     
-/* ヘッダー全体 */
+/* ヘッダー全体：背景をロゴに馴染む「ごくわずかなグレー」に設定 */
 header {
   position: fixed !important; 
   top: 0 !important; 
   left: 0 !important; 
   width: 100% !important; 
   height: 110px !important;
-  background-color: #fcfcfc !important; 
+  background-color: #fcfcfc !important; /* ロゴの背景色に歩み寄る色 */
   display: flex !important;
-  flex-direction: row !important; 
+  flex-direction: row !important; /* 何があっても横並び */
   align-items: center !important;
   justify-content: space-between !important;
   padding: 0 40px !important;
@@ -31,37 +31,48 @@ header {
   box-sizing: border-box !important;
 }
 
+/* ロゴと社名を囲む箱：ここも横並びを絶対固定 */
 .logo-container { 
   display: flex !important; 
   flex-direction: row !important; 
   align-items: center !important; 
   flex-shrink: 0 !important;
-  min-width: 300px !important;
-  cursor: pointer;
+  min-width: 300px !important; /* 横幅を確保してズレを防止 */
 }
 
+/* ロゴ画像：コントラストを極限まで上げて「枠」を焼き飛ばす */
 .logo-img {
   height: 80px !important;
   width: auto !important;
   margin-right: 15px !important;
   display: block !important;
   object-fit: contain !important;
-  background-color: #ffffff !important; 
-  padding: 5px !important;               
-  border-radius: 8px !important;         
+
+  /* --- ここが重要：背景透過を諦め、あえて「白」を敷く --- */
+  background-color: #ffffff !important; /* 画像と同じ白を敷いて境目を消す */
+  padding: 5px !important;               /* 少し余白を作って綺麗に見せる */
+  border-radius: 8px !important;         /* 角を少し丸くして柔らかい印象に */
+  
+  /* 画像のコントラストをさらに上げ、背景を「完全な白」に飛ばします */
   filter: contrast(200%) brightness(1.1) !important;
+  
+  /* 浮いている感を消すために、ごく薄い影をつけて「意図的なデザイン」に見せる */
   box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+  
+  mix-blend-mode: normal !important; /* 乗算(multiply)をやめて通常表示に戻す */
 }
 
+/* 会社名：絶対に改行させず、ロゴの右横に固定 */
 .logo-text { 
   font-weight: bold !important; 
   color: #FF9500 !important; 
   font-size: 1.6rem !important; 
-  white-space: nowrap !important; 
+  white-space: nowrap !important; /* 文字を絶対に折り返さない */
   margin: 0 !important;
   display: block !important;
 }
 
+/* 右側メニュー：ここも縦にならないように念押し */
 nav ul { 
   display: flex !important; 
   flex-direction: row !important; 
@@ -70,8 +81,6 @@ nav ul {
   padding: 0 !important; 
 }
 nav ul li { margin-left: 20px !important; }
-nav ul li a { cursor: pointer; text-decoration: none; color: #333; font-weight: bold; }
-nav ul li a:hover { color: #FF9500; }
 
     /* セクション */
     section { 
@@ -98,7 +107,7 @@ nav ul li a:hover { color: #FF9500; }
     /* レイアウト */
     .flex-container { display: flex; gap: 50px; align-items: flex-start; text-align: left; }
     .flex-left, .flex-right { flex: 1; }
-    .flex-right img { width: 100%; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+    img { width: 100%; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
 
     .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
     .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-bottom: 8px solid #FF9500; }
@@ -120,16 +129,18 @@ nav ul li a:hover { color: #FF9500; }
     .footer-info { flex: 1.5; min-width: 250px; }
     .footer-nav, .footer-service { flex: 1; min-width: 200px; }
     
+    /* フッターロゴの修正 */
     .footer-logo { 
-      height: 60px !important; 
-      width: auto !important; 
-      display: block !important;
-      object-fit: contain !important; 
-      margin-bottom: 20px !important;
-      mix-blend-mode: screen !important; 
-      filter: contrast(150%) brightness(0.9) !important;
-      opacity: 0.9;
-    }
+  height: 60px !important; 
+  width: auto !important; 
+  display: block !important;
+  object-fit: contain !important; 
+  margin-bottom: 20px !important;
+  /* 白浮きを消して黒背景に馴染ませる設定 */
+  mix-blend-mode: screen !important; 
+  filter: contrast(150%) brightness(0.9) !important;
+  opacity: 0.9;
+}
     .footer-address { display: flex; align-items: center; gap: 10px; margin-top: 20px; color: #bbb; }
     
     footer h4 { color: #fff; border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 20px; }
@@ -148,13 +159,11 @@ nav ul li a:hover { color: #FF9500; }
 
     @media (max-width: 900px) {
       header { height: auto; padding: 15px; flex-direction: column; position: static; }
-      .logo-container { min-width: auto !important; margin-bottom: 10px; }
       nav { margin-top: 15px; }
       nav ul { flex-wrap: wrap; justify-content: center; }
       nav ul li { margin: 5px 10px; }
       .flex-container { flex-direction: column; }
       .hero-content h1 { font-size: 2.2rem; }
-      .hero-content { padding: 30px; }
       section { padding: 60px 20px; scroll-margin-top: 20px; }
       .footer-container { flex-direction: column; }
     }
@@ -240,14 +249,14 @@ nav ul li a:hover { color: #FF9500; }
       <img src="https://drive.google.com/thumbnail?id=1cGUKOXOfceN8GKxIaQ-tEE_KQyIc-ju6&sz=w800" class="card-img" style="height:280px;">
       <div class="card-body">
         <h3>交通誘導警備</h3>
-        <p>交通誘導とは、道路工事や建設現場、各種イベントにおいて、人や車両の安全な通行を確保するために行う業務です。誘導員は歩行者や車両の流れを整理し、事故の発生を未然に防ぐ役割を担います。工事車両の出入りや狭い道路での通行管理など、状況に応じた判断が求められるため、高い集中力と迅速な対応力が不可欠です。</p>
+        <p>交通誘導とは、道路工事や建設現場、各種イベントにおいて、人や車両の安全な通行を確保するために行う業務です。誘導員は歩行者や車両の流れを整理し、事故の発生を未然に防ぐ役割を担います。工事車両の出入りや狭い道路での通行管理など、状況に応じた判断が求められるため、高い集中力と迅速な対応力が不可欠です。交通誘導は円滑な進行を支えると同時に、地域住民の安全を守る大切な役割を果たしています。</p>
       </div>
     </div>
     <div class="card">
       <img src="https://drive.google.com/thumbnail?id=1lMusGKjROlqlcQ7zg7GE-MbZIsFXMGWz&sz=w800" class="card-img" style="height:280px;">
       <div class="card-body">
         <h3>イベント・雑踏警備</h3>
-        <p>花火大会や各種イベント、商業施設OPENイベントの開催時、 多数の人や車両が混雑する場所において、来場者・歩行者・車両誘導を円滑に行い、 事故の発生を未然に防ぎます。綿密な事前打ち合わせを実施し、警備計画を提案、お客様のご要望にお応えさせていただきます。</p>
+        <p>花火大会や雪まつり等、各種イベントや商業施設OPENイベントの開催時、 多数の人や車両が混雑する場所において、来場者・歩行者・車両誘導を円滑に行い、 事故の発生を未然に防ぎます。綿密な事前打ち合わせを実施し、警備計画を提案、お客様のご要望にお応えさせていただきます。</p>
       </div>
     </div>
   </div>
@@ -272,34 +281,44 @@ nav ul li a:hover { color: #FF9500; }
 </section>
 
 <section id="contact" style="padding: 60px 20px; background-color: #f9f9f9;">
-  <div class="title-area">
-    <h2>お問い合わせ</h2>
+  <div class="title-area" style="text-align: center; margin-bottom: 40px;">
+    <h2 style="font-size: 2rem; color: #333; border-bottom: 3px solid #FF9500; display: inline-block; padding-bottom: 10px;">お問い合わせ</h2>
   </div>
-  <div class="flex-container" style="max-width: 1000px; margin: 0 auto;">
+  <div class="flex-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1000px; margin: 0 auto;">
     
-    <!-- 左側：メッセージエリアと新画像 -->
-    <div class="flex-left" style="min-width: 300px;">
+    <!-- 左側：メッセージエリア -->
+    <div class="flex-left" style="flex: 1; min-width: 300px;">
       <h3 style="color: #003366; margin-bottom: 15px;">お気軽にご相談ください</h3>
       <p style="line-height: 1.6; color: #555; margin-bottom: 20px;">
         急なご依頼・ご質問・採用に関して等お気軽にどうぞ。<br>
         迅速・丁寧にご対応いたします。
       </p>
-      <!-- ここに新しい画像を反映しました -->
-      <img src="https://drive.google.com/thumbnail?id=19T8LTnaOr37x_Pgir8MiKvLL65sEuepR&sz=w800" alt="お問い合わせ窓口" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+      <img src="thumbnail?id=1RX-q_raexV3FG4GB6xdr6TUCiBnr8fVB&sz=w800" alt="お問い合わせ画像" style="width: 100%; border-radius: 8px; shadow: 0 4px 10px rgba(0,0,0,0.1);">
     </div>
 
     <!-- 右側：フォームエリア -->
-    <div class="flex-right" style="min-width: 300px;">
-      <div class="contact-box">
+    <div class="flex-right" style="flex: 1; min-width: 300px;">
+      <div class="contact-box" style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
         <h4 style="text-align:center; margin-top:0; margin-bottom:25px; color: #333;">問い合わせフォーム</h4>
+        
+        <!-- 送り先URLを設定済み -->
         <form action="https://script.google.com/macros/s/AKfycbz62v9CP-JrCEJ4dM1C1S2p67hJcC6nfFDBBD884lmo0Mzym4zceQk_GDANX3-D-ViZ/exec" method="POST">
-          <input type="text" name="company" placeholder="会社名">
-          <input type="text" name="name" placeholder="担当者名（必須）" required>
-          <input type="tel" name="tel" placeholder="電話番号（必須）" required>
-          <input type="email" name="email" placeholder="メールアドレス（必須）" required>
-          <textarea name="message" rows="5" placeholder="お問い合わせ内容" required></textarea>
-          <button type="submit" class="submit-btn">この内容で送信する</button>
+          <input type="text" name="company" placeholder="会社名" style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+          
+          <input type="text" name="name" placeholder="担当者名（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+          
+          <input type="tel" name="tel" placeholder="電話番号（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+          
+          <input type="email" name="email" placeholder="メールアドレス（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+          
+          <textarea name="message" rows="5" placeholder="お問い合わせ内容" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;"></textarea>
+          
+          <button type="submit" class="submit-btn" style="width: 100%; padding: 15px; background-color: #FF9500; color: white; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s;">
+            この内容で送信する
+          </button>
         </form>
+        
+        <div id="res" style="margin-top:20px; text-align:center; font-weight:bold;"></div>
       </div>
     </div>
 
@@ -339,10 +358,33 @@ nav ul li a:hover { color: #FF9500; }
   </div>
   
   <div class="footer-bottom">
-    <div>© 2026 アクシア株式会社. All Rights Reserved.</div>
+    <div>© 2026 株式会社アクシア. All Rights Reserved.</div>
     <div>設立：2026年4月1日 ｜ 愛知県一宮市</div>
   </div>
 </footer>
 
+<script>
+  document.getElementById('contactForm').onsubmit = function(e) {
+    e.preventDefault();
+    const b = document.getElementById('submitBtn');
+    const res = document.getElementById('res');
+    b.disabled = true; b.innerText = '送信中...';
+    res.innerText = "";
+
+    google.script.run
+      .withSuccessHandler(function() {
+        res.style.color = "#FF9500";
+        res.innerText = "送信完了しました。";
+        document.getElementById('contactForm').reset();
+        b.disabled = false; b.innerText = 'この内容で送信する';
+      })
+      .withFailureHandler(function() {
+        res.style.color = "red";
+        res.innerText = "送信に失敗しました。お電話にてご連絡ください。";
+        b.disabled = false; b.innerText = 'この内容で送信する';
+      })
+      .processForm(this);
+  };
+</script>
 </body>
 </html>
