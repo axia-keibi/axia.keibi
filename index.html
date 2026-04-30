@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>アクシア株式会社 - 公式サイト</title>
+  <style>
+    /* 全体設定 */
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; 
+      line-height: 1.8; color: #333; margin: 0; padding: 0; background-color: #fcfcfc;
+    }
+    
+/* ヘッダー全体：背景をロゴに馴染む「ごくわずかなグレー」に設定 */
+header {
+  position: fixed !important; 
+  top: 0 !important; 
+  left: 0 !important; 
+  width: 100% !important; 
+  height: 110px !important;
+  background-color: #fcfcfc !important; /* ロゴの背景色に歩み寄る色 */
+  display: flex !important;
+  flex-direction: row !important; /* 何があっても横並び */
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 40px !important;
+  box-shadow: 0 1px 10px rgba(0,0,0,0.1) !important;
+  z-index: 9999 !important;
+  box-sizing: border-box !important;
+}
+
+/* ロゴと社名を囲む箱：ここも横並びを絶対固定 */
+.logo-container { 
+  display: flex !important; 
+  flex-direction: row !important; 
+  align-items: center !important; 
+  flex-shrink: 0 !important;
+  min-width: 300px !important; /* 横幅を確保してズレを防止 */
+}
+
+/* ロゴ画像：コントラストを極限まで上げて「枠」を焼き飛ばす */
+.logo-img {
+  height: 80px !important;
+  width: auto !important;
+  margin-right: 15px !important;
+  display: block !important;
+  object-fit: contain !important;
+
+  /* --- ここが重要：背景透過を諦め、あえて「白」を敷く --- */
+  background-color: #ffffff !important; /* 画像と同じ白を敷いて境目を消す */
+  padding: 5px !important;               /* 少し余白を作って綺麗に見せる */
+  border-radius: 8px !important;         /* 角を少し丸くして柔らかい印象に */
+  
+  /* 画像のコントラストをさらに上げ、背景を「完全な白」に飛ばします */
+  filter: contrast(200%) brightness(1.1) !important;
+  
+  /* 浮いている感を消すために、ごく薄い影をつけて「意図的なデザイン」に見せる */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+  
+  mix-blend-mode: normal !important; /* 乗算(multiply)をやめて通常表示に戻す */
+}
+
+/* 会社名：絶対に改行させず、ロゴの右横に固定 */
+.logo-text { 
+  font-weight: bold !important; 
+  color: #FF9500 !important; 
+  font-size: 1.6rem !important; 
+  white-space: nowrap !important; /* 文字を絶対に折り返さない */
+  margin: 0 !important;
+  display: block !important;
+}
+
+/* 右側メニュー：ここも縦にならないように念押し */
+nav ul { 
+  display: flex !important; 
+  flex-direction: row !important; 
+  list-style: none !important; 
+  margin: 0 !important; 
+  padding: 0 !important; 
+}
+nav ul li { margin-left: 20px !important; }
+
+    /* セクション */
+    section { 
+      padding: 120px 25px; max-width: 1200px; margin: auto;
+      scroll-margin-top: 110px;
+    }
+    .title-area { text-align: center; margin-bottom: 70px; }
+    h2 { font-size: 2.5rem; border-bottom: 6px solid #FF9500; display: inline-block; padding-bottom: 15px; }
+
+    /* ヒーローセクション */
+    .hero {
+      height: 100vh; min-height: 650px;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                  url("https://drive.google.com/thumbnail?id=1fLz1HJHMCBfdExWu04wSTTPrJRgx5x87&sz=w1920");
+      background-size: cover; background-position: center;
+      display: flex; align-items: center; justify-content: center; text-align: center; 
+    }
+    .hero-content { background: rgba(255, 255, 255, 0.85); padding: 50px 70px; border-radius: 25px; backdrop-filter: blur(10px); box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+    .hero-content h1 { font-size: 3.5rem; margin: 0; font-weight: 900; }
+    .hero-content h1 span { color: #FF9500; }
+    .hero-sub { font-size: 1.8rem; font-weight: bold; margin: 20px 0 40px; color: #1a1a1a; }
+    .btn-contact { background: #FF9500; color: white; padding: 18px 45px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; font-size: 1.1rem; }
+
+    /* レイアウト */
+    .flex-container { display: flex; gap: 50px; align-items: flex-start; text-align: left; }
+    .flex-left, .flex-right { flex: 1; }
+    img { width: 100%; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+
+    .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+    .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border-bottom: 8px solid #FF9500; }
+    .card-img { width: 100%; height: 220px; object-fit: cover; }
+    .card-body { padding: 30px; }
+    .card-body h3 { font-size: 1.4rem; margin: 0 0 15px; border-left: 5px solid #FF9500; padding-left: 15px; }
+
+    .about-table { width: 100%; border-collapse: collapse; background: white; border-radius: 20px; overflow: hidden; }
+    .about-table th, .about-table td { padding: 22px; border-bottom: 1px solid #eee; text-align: left; }
+    .about-table th { background: #fafafa; width: 30%; border-right: 1px solid #eee; font-weight: bold; }
+
+    .contact-box { background: white; padding: 40px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+    input, textarea { width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 10px; margin-bottom: 15px; box-sizing: border-box; font-size: 1rem; }
+    .submit-btn { background: #FF9500; color: white; border: none; padding: 20px; width: 100%; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1.2rem; }
+
+    /* フッター */
+    footer { background-color: #222; color: #fff; padding: 60px 40px 20px; font-size: 0.9rem; }
+    .footer-container { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; }
+    .footer-info { flex: 1.5; min-width: 250px; }
+    .footer-nav, .footer-service { flex: 1; min-width: 200px; }
+    
+    /* フッターロゴの修正 */
+    .footer-logo { 
+  height: 60px !important; 
+  width: auto !important; 
+  display: block !important;
+  object-fit: contain !important; 
+  margin-bottom: 20px !important;
+  /* 白浮きを消して黒背景に馴染ませる設定 */
+  mix-blend-mode: screen !important; 
+  filter: contrast(150%) brightness(0.9) !important;
+  opacity: 0.9;
+}
+    .footer-address { display: flex; align-items: center; gap: 10px; margin-top: 20px; color: #bbb; }
+    
+    footer h4 { color: #fff; border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 20px; }
+    footer ul { list-style: none; padding: 0; margin: 0; }
+    footer ul li { margin-bottom: 12px; }
+    footer ul li a { color: #bbb; text-decoration: none; transition: 0.3s; cursor: pointer; }
+    footer ul li a:hover { color: #FF9500; }
+    
+    .footer-link-icon { color: #FF9500; margin-right: 8px; font-weight: bold; }
+    
+    .footer-bottom {
+      max-width: 1200px; margin: 40px auto 0; padding-top: 20px;
+      border-top: 1px solid #333; display: flex; justify-content: space-between;
+      color: #777; font-size: 0.8rem;
+    }
+
+    @media (max-width: 900px) {
+      header { height: auto; padding: 15px; flex-direction: column; position: static; }
+      nav { margin-top: 15px; }
+      nav ul { flex-wrap: wrap; justify-content: center; }
+      nav ul li { margin: 5px 10px; }
+      .flex-container { flex-direction: column; }
+      .hero-content h1 { font-size: 2.2rem; }
+      section { padding: 60px 20px; scroll-margin-top: 20px; }
+      .footer-container { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+    <img src="https://drive.google.com/thumbnail?id=1yE6Vfjbf-xeaDn9OmAwpFTZc8Mrkp6zU&sz=w1000" class="logo-img" alt="ロゴ">
+    <div class="logo-text">アクシア株式会社</div>
+  </div>
+  <nav>
+    <ul>
+      <li><a onclick="document.getElementById('vision').scrollIntoView({behavior: 'smooth'});">私たちの想い</a></li>
+      <li><a onclick="document.getElementById('values').scrollIntoView({behavior: 'smooth'});">大切にする事</a></li>
+      <li><a onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'});">事業内容</a></li>
+      <li><a onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">会社概要</a></li>
+      <li><a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">お問い合わせ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-content">
+    <h1><span>「当たり前を」</span><br>どこよりも丁寧に。</h1>
+    <p style="font-size:1.2rem; font-weight:bold; margin-top:20px; color:#555;">アクシア株式会社　交通誘導・雑踏警備業務</p>
+    <p class="hero-sub">誠実な仕事を当たり前に続ける。</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});" class="btn-contact">お問い合わせはこちら</button>
+  </div>
+</div>
+
+<section id="vision">
+  <div class="title-area"><h2>私たちの想い</h2></div>
+  <div class="flex-container">
+    <div class="flex-left">
+      <h3 style="font-size:1.5rem; line-height:1.6;">私たちは大きな理想を語るよりも、まずは目の前の現場一つひとつに誠実に向き合うことから始めたいと考えています。</h3>
+      <p>特別なことはできないかもしれません。でもだからこそ「当たり前の安全」をどこよりも丁寧に守り抜く。それがアクシアの原点です。</p>
+      <p>私は現場のガードマンを「ただの労働力」とは思いません。慣れない環境や厳しい天候の中現場を支えてくれる仲間を尊重し、困ったときにはすぐに相談に乗れる。そんな当たり前の信頼関係を築ける会社でありたいと思っています。</p>
+      <p>「アクシアのガードマンに任せておけば安心だ」そう思っていただけるよう、現場のルールを守り、明るい挨拶と丁寧な誘導を徹底します。一つひとつの現場に真摯に向き合うことが、最高のアクシア（価値）に繋がると信じています。</p>
+      <p>私たちはまだ始まったばかりの小さな会社です。まずは自分たちが誇りを持って働く姿を見せることで、地域の方々や社会から「警備員がいてくれて助かった」と思っていただけるそんな小さな積み重ねを大切にしていきたいと考えています。</p>
+    </div>
+    <div class="flex-right">
+      <img src="https://drive.google.com/thumbnail?id=1qDEzj_iINMrsP0YoFPHWBI9LFlrvrBbQ&sz=w1000">
+    </div>
+  </div>
+</section>
+
+<section id="values" style="background-color: #f8f8f8;">
+  <div class="title-area"><h2>アクシアが大切にしている３つのこと</h2></div>
+  <div class="grid-container">
+    <div class="card">
+      <img src="https://drive.google.com/thumbnail?id=1XbGBTsNo0BYgkNr1PikOGc8CkxeAYymm&sz=w600" class="card-img">
+      <div class="card-body">
+        <h3>「声」を掛け合う、聴き合う</h3>
+        <p>警備はチームプレーです。私たちは現場での適切な無線連絡や声掛けはもちろん、会社と警備員そして現場との対話を何よりも大切にします。一方的な指示ではなく現場の状況や不安を「聴く」ことから本当の安全が始まると考えています。</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://drive.google.com/thumbnail?id=11z6YZ1V_AiaPckEU4ug5wSe0SripKRvA&sz=w600" class="card-img">
+      <div class="card-body">
+        <h3>現場の「困った」をひとりにしない</h3>
+        <p>トラブルや予期せぬ事態が起きたとき現場の警備員を孤独にさせません。代表を含め会社全体ですぐにバックアップできる体制を整えます。「後ろに会社がついている」という安心感があるからこそ目の前の安全に100%集中できる。その環境を守り抜きます。</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://drive.google.com/thumbnail?id=1RQ_qxL5m6FgdSaVmMoB5mEh5YDxBVu9B&sz=w600" class="card-img">
+      <div class="card-body">
+        <h3>「誠実な仕事」を当たり前に続ける</h3>
+        <p>背伸びをした特別なサービスよりも、まずは「時間・ルールを守る」「明るい挨拶をする」「丁寧な誘導を心がける」といった基本をどこよりも徹底します。その小さな積み重ねこそが取引先様からの信頼そして自分たちの誇りに繋がると信じています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="title-area">
+    <h2>事業内容</h2>
+    <p style="font-size:1.2rem; font-weight:bold; color:#555; margin-top:-40px;">一宮を中心に、交通誘導から雑踏警備まで。<br>地域の安全を守ります。</p>
+  </div>
+  <div class="grid-container" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+    <div class="card">
+      <img src="https://drive.google.com/thumbnail?id=1cGUKOXOfceN8GKxIaQ-tEE_KQyIc-ju6&sz=w800" class="card-img" style="height:280px;">
+      <div class="card-body">
+        <h3>交通誘導警備</h3>
+        <p>交通誘導とは、道路工事や建設現場、各種イベントにおいて、人や車両の安全な通行を確保するために行う業務です。誘導員は歩行者や車両の流れを整理し、事故の発生を未然に防ぐ役割を担います。工事車両の出入りや狭い道路での通行管理など、状況に応じた判断が求められるため、高い集中力と迅速な対応力が不可欠です。交通誘導は円滑な進行を支えると同時に、地域住民の安全を守る大切な役割を果たしています。</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://drive.google.com/thumbnail?id=1lMusGKjROlqlcQ7zg7GE-MbZIsFXMGWz&sz=w800" class="card-img" style="height:280px;">
+      <div class="card-body">
+        <h3>イベント・雑踏警備</h3>
+        <p>花火大会や雪まつり等、各種イベントや商業施設OPENイベントの開催時、 多数の人や車両が混雑する場所において、来場者・歩行者・車両誘導を円滑に行い、 事故の発生を未然に防ぎます。綿密な事前打ち合わせを実施し、警備計画を提案、お客様のご要望にお応えさせていただきます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" style="background-color: #f8f8f8;">
+  <div class="title-area"><h2>会社概要</h2></div>
+  <div class="flex-container">
+    <div class="flex-left">
+      <table class="about-table">
+        <tr><th>会社名</th><td>アクシア株式会社</td></tr>
+        <tr><th>代表者</th><td>森　匡弘</td></tr>
+        <tr><th>所在地</th><td>愛知県一宮市北今字再鳥一２９番地５</td></tr>
+        <tr><th>事業内容</th><td>交通誘導警備業務、雑踏警備業務</td></tr>
+        <tr><th>金融機関</th><td>尾西信用金庫・三井住友銀行</td></tr>
+      </table>
+    </div>
+    <div class="flex-right">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3257.733598734!2d136.756285!3d35.300587!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6003058869150001%3A0x7d6f5f9e20511874!2z44CSNDkxLTA5NDUg5oSb55-l55yM5LiA5a6u5biC5YyX5LuK5YaN6bOl5LiA77yS77yZ55Wq5Zyw77yV!5e0!3m2!1sja!2sjp!4v1715000000000!5m2!1sja!2sjp" width="100%" height="380" style="border:0; border-radius:20px;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding: 60px 20px; background-color: #f9f9f9;">
+  <div class="title-area" style="text-align: center; margin-bottom: 40px;">
+    <h2 style="font-size: 2rem; color: #333; border-bottom: 3px solid #FF9500; display: inline-block; padding-bottom: 10px;">お問い合わせ</h2>
+  </div>
+  <div class="flex-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1000px; margin: 0 auto;">
+    
+    <!-- 左側：メッセージエリア -->
+    <div class="flex-left" style="flex: 1; min-width: 300px;">
+      <h3 style="color: #003366; margin-bottom: 15px;">お気軽にご相談ください</h3>
+      <p style="line-height: 1.6; color: #555; margin-bottom: 20px;">
+        急なご依頼・ご質問・採用に関して等お気軽にどうぞ。<br>
+        迅速・丁寧にご対応いたします。
+      </p>
+      <img src="https://drive.google.com/thumbnail?id=1RX-q_raexV3FG4GB6xdr6TUCiBnr8fVB&sz=w800" alt="お問い合わせ画像" style="width: 100%; border-radius: 8px; shadow: 0 4px 10px rgba(0,0,0,0.1);">
+    </div>
+
+    <!-- 右側：フォームエリア -->
+    <div class="flex-right" style="flex: 1; min-width: 300px;">
+      <div class="contact-box" style="background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+        <h4 style="text-align:center; margin-top:0; margin-bottom:25px; color: #333;">問い合わせフォーム</h4>
+        
+        <!-- 送り先URLを設定済み -->
+        <form action="https://script.google.com/macros/s/AKfycbzqCJoT0kMsyXvCkYZ0UqcKLMKD3oHBmiRgKnutPzBgBECGFELRY8Ze_LQ-KLQ4WKnJ/exec" method="POST">
+          <input type="text" name="company" placeholder="会社名" style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+          
+          <input type="text" name="name" placeholder="担当者名（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+          
+          <input type="tel" name="tel" placeholder="電話番号（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+          
+          <input type="email" name="email" placeholder="メールアドレス（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+          
+          <textarea name="message" rows="5" placeholder="お問い合わせ内容" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;"></textarea>
+          
+          <button type="submit" class="submit-btn" style="width: 100%; padding: 15px; background-color: #FF9500; color: white; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s;">
+            この内容で送信する
+          </button>
+        </form>
+        
+        <div id="res" style="margin-top:20px; text-align:center; font-weight:bold;"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-info">
+      <img src="https://drive.google.com/thumbnail?id=1yE6Vfjbf-xeaDn9OmAwpFTZc8Mrkp6zU&sz=w500" class="footer-logo" alt="ロゴ">
+      <p style="margin-bottom:10px; font-weight:bold;">「当たり前」をどこよりも丁寧に。</p>
+      <p style="color:#bbb;">愛知県一宮市を中心に、地域の安全を守ります。</p>
+      <div class="footer-address">
+        <span style="background:#444; padding:5px 8px; border-radius:5px; color:#FF9500;">📍</span>
+        愛知県一宮市北今字再鳥一２９－５
+      </div>
+    </div>
+    
+    <div class="footer-nav">
+      <h4>サイトマップ</h4>
+      <ul>
+        <li><a onclick="document.getElementById('vision').scrollIntoView({behavior: 'smooth'});"><span class="footer-link-icon">›</span>私たちの想い</a></li>
+        <li><a onclick="document.getElementById('values').scrollIntoView({behavior: 'smooth'});"><span class="footer-link-icon">›</span>大切にしていること</a></li>
+        <li><a onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'});"><span class="footer-link-icon">›</span>事業内容</a></li>
+        <li><a onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});"><span class="footer-link-icon">›</span>会社概要</a></li>
+        <li><a onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});"><span class="footer-link-icon">›</span>お問い合わせ</a></li>
+      </ul>
+    </div>
+    
+    <div class="footer-service">
+      <h4>事業内容</h4>
+      <ul>
+        <li><span class="footer-link-icon">☑</span> 交通誘導警備業務</li>
+        <li><span class="footer-link-icon">☑</span> 雑踏警備業務</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <div>© 2026 株式会社アクシア. All Rights Reserved.</div>
+    <div>設立：2026年4月1日 ｜ 愛知県一宮市</div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('contactForm').onsubmit = function(e) {
+    e.preventDefault();
+    const b = document.getElementById('submitBtn');
+    const res = document.getElementById('res');
+    b.disabled = true; b.innerText = '送信中...';
+    res.innerText = "";
+
+    google.script.run
+      .withSuccessHandler(function() {
+        res.style.color = "#FF9500";
+        res.innerText = "送信完了しました。";
+        document.getElementById('contactForm').reset();
+        b.disabled = false; b.innerText = 'この内容で送信する';
+      })
+      .withFailureHandler(function() {
+        res.style.color = "red";
+        res.innerText = "送信に失敗しました。お電話にてご連絡ください。";
+        b.disabled = false; b.innerText = 'この内容で送信する';
+      })
+      .processForm(this);
+  };
+</script>
+</body>
+</html>
