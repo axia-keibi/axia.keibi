@@ -300,17 +300,21 @@ nav ul li { margin-left: 20px !important; }
         <h4 style="text-align:center; margin-top:0; margin-bottom:25px; color: #333;">問い合わせフォーム</h4>
         
         <!-- ★ここが修正ポイント！ idを付けて actionを消しました -->
-        <form id="contactForm">
-          <input type="text" name="company" placeholder="会社名" style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
-          <input type="text" name="name" placeholder="担当者名（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
-          <input type="tel" name="tel" placeholder="電話番号（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
-          <input type="email" name="email" placeholder="メールアドレス（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
-          <textarea name="message" rows="5" placeholder="お問い合わせ内容" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;"></textarea>
-          
-          <button type="submit" id="submitBtn" class="submit-btn" style="width: 100%; padding: 15px; background-color: #FF9500; color: white; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer;">
-            この内容で送信する
-          </button>
-        </form>
+       <form action="ここにコピーしたGASのURLを貼り付け" method="POST">
+  <input type="text" name="company" placeholder="会社名" style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+  
+  <input type="text" name="name" placeholder="担当者名（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+  
+  <input type="tel" name="tel" placeholder="電話番号（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+  
+  <input type="email" name="email" placeholder="メールアドレス（必須）" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;">
+  
+  <textarea name="message" rows="5" placeholder="お問い合わせ内容" required style="width: 100%; margin-bottom: 15px; padding: 12px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;"></textarea>
+  
+  <button type="submit" class="submit-btn" style="width: 100%; padding: 15px; background-color: #FF9500; color: white; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer;">
+    この内容で送信する
+  </button>
+</form>
         <div id="res" style="margin-top:20px; text-align:center; font-weight:bold;"></div>
       </div>
     </div>
